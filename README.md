@@ -1,7 +1,7 @@
-##To run all tests
+## To run all tests
 ./runTest.sh
 
-##API Documentation: Swagger
+## API Documentation: Swagger
 http://localhost:9002/api/
 
 ## To get all the dependencies install glide using
