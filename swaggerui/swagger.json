@@ -1,0 +1,290 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Chefling Assignment- API"
+  },
+  "host": "localhost:9002",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "APIs"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "tags": [
+          "APIs"
+        ],
+        "summary": "Add a new user to the datastore",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Contract",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userContract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/authTokenResponse"
+            }
+          },
+          "400": {
+            "description": "Error: Bad Request",
+            "example": "Invalid Request Body"
+          }
+        }
+      }
+    },
+    "/user/signin": {
+      "get": {
+        "tags": [
+          "APIs"
+        ],
+        "summary": "User Login",
+        "operationId": "userLogin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Credentials Contract",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/authTokenResponse"
+            }
+          },
+          "400": {
+            "description": "Error: Bad Request",
+            "example": "Email Password doesn't match"
+          }
+        }
+      }
+    },
+    "/user/profile/{userId}": {
+      "get": {
+        "tags": [
+          "APIs"
+        ],
+        "summary": "Shows User Profile",
+        "operationId": "userProfile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "Email ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/userContract"
+            }
+          },
+          "400": {
+            "description": "Error: Bad Request",
+            "example": "Userdata Json Parse Error"
+          }
+        },
+        "securityDefinitions": {
+          "bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+          }
+        }
+      }
+      }
+    },
+    "/user/profile/update/{userId}": {
+      "post": {
+        "tags": [
+          "APIs"
+        ],
+        "summary": "Update User Profile",
+        "operationId": "updateUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "Email ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Profile Contract",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/profileContract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/userUpdatedResponse"
+            },
+            "400": {
+              "description": "Error: Bad Request",
+              "schema": {
+                "$ref": "#/definitions/userNotUpdatedResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userContract": {
+      "description": "Request details for User Contract",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First Name",
+          "example": "Jyotsna"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last Name",
+          "example": "Gupta"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email Id",
+          "example": "jyotsna@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password",
+          "example": "pass123!"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password"
+      ]
+    },
+    "userCredentials": {
+      "description": "Request details for User Credentials",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email Id",
+          "example": "jyotsna@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password",
+          "example": "pass123!"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "profileContract": {
+      "description": "Request details for Profile Update Contract",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First Name",
+          "example": "Jyotsna"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last Name",
+          "example": "Gupta"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password",
+          "example": "pass123!"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "password"
+      ]
+    },
+    "authTokenResponse": {
+      "description": "Auth TokenResponse",
+      "properties": {
+        "auth_token": {
+          "type": "string",
+          "example": "xhfhdjhYdgbsdg12Hcdh"
+        }
+      }
+    },
+    "userUpdatedResponse": {
+      "description": "User Updated Response from Server",
+      "properties": {
+        "action": {
+          "type": "string",
+          "example": "User Data Updated into Mongo "
+        }
+      }
+    },
+    "userNotUpdatedResponse": {
+      "description": "User Failed to Update Response from Server",
+      "properties": {
+        "action": {
+          "type": "string",
+          "example": "User Data Failed to Update in Mongo"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Chefling",
+    "url": "https://www.chefling.net/"
+  }
+}

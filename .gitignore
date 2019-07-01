@@ -1,0 +1,4 @@
+vendor/
+.idea/
+Chefling_Go.iml
+config.json

@@ -1,0 +1,24 @@
+hash: edd7ef0a2c80af57228959e397d320c17f0e218ae959c20b73b6ed3fa30e563c
+updated: 2019-06-08T22:21:30.215303+05:30
+imports:
+- name: github.com/go-redis/redis
+  version: 9c885d5ba8a22f260badcffde1649915fbeebfc0
+- name: github.com/go-swagger/go-swagger
+  version: ed0efd80db4fdb40ba0de4c5b9464c1f053d9d93
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/handlers
+  version: 90663712d74cb411cbef281bc1e08c19d1a76145
+- name: github.com/gorilla/mux
+  version: 24fca303ac6da784b9e8269f724ddeb0b2eea5e7
+- name: gopkg.in/mgo.v2
+  version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
+testImports:
+- name: github.com/EverythingMe/disposable-redis
+  version: b7812767aee789745f13a1009c7bd3d422b61a24
+- name: github.com/mediocregopher/radix.v2
+  version: 596a3ed684d9390f4831d6800dffd6a6067933d5
+  subpackages:
+  - redisrt
+- name: gopkg.in/DATA-DOG/go-sqlmock.v1
+  version: 3f9954f6f6697845b082ca57995849ddf614f450

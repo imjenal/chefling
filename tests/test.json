@@ -1,0 +1,12 @@
+{
+  "PORT" : "9002",
+  "DATASTORE":"mongo",
+  "MONGO_SERVER":"localhost:27017",
+  "MONGO_DB": "chefling",
+  "SQL" :"mysql",
+  "MYSQL_USER" : "root",
+  "DB_SCHEMA" : "chefling",
+  "DB_HOST" : "tcp(127.0.0.1:3306)",
+  "SECRET_KEY" : "secret"
+}
+
